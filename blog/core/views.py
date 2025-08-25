@@ -24,4 +24,4 @@ def home(request):
     else:
         form = SignUpForm()
 
-    return render(request, 'index.html', {'form': form})
+    return render(request, 'signup.html', {'form': form})
