@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from django import forms
+from django.views import View
 
-# Updated form with name, email, and password
+# form with name, email, and password
 class SignUpForm(forms.Form):
     name = forms.CharField(label='Name', max_length=100)
     email = forms.EmailField(label='Email')
