@@ -21,6 +21,7 @@ def home(request):
                 'form': SignUpForm(),
                 'message': f'Signed up as {name} ({email})!'
             })
+        
     else:
         form = SignUpForm()
 
