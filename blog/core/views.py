@@ -1,29 +1,34 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django import forms
-from django.views import View
 
-# form with name, email, and password
+# Sign-up form
 class SignUpForm(forms.Form):
-    name = forms.CharField(label='Name', max_length=100)
     email = forms.EmailField(label='Email')
     password = forms.CharField(label='Password', widget=forms.PasswordInput)
+def login_view(request):
+    email = request.session.get('email')  # Retrieve from session
+    return render(request, 'login.html', {'email': email})
 
+# Home view (sign-up page)
 def home(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)
         if form.is_valid():
-            name = form.cleaned_data['name']
             email = form.cleaned_data['email']
-            # Password should be hashed before saving in real apps
             password = form.cleaned_data['password']
-            
-            # For now, we just display a message
-            return render(request, 'index.html', {
-                'form': SignUpForm(),
-                'message': f'Signed up as {name} ({email})!'
-            })
-        
+
+            # Dummy authentication check
+            if email == 'test@example.com' and password == 'password123':
+             request.session['email'] = email
+             return redirect('login')
+
+            else:
+             return render(request, 'signup.html', {
+                    'form': form,
+                    'message': 'Invalid email or password.'
+                })
     else:
         form = SignUpForm()
 
-    return render(request, 'signup.html', {'form': form})
+    return render(request, 'signup.html', {'form': form,})
+

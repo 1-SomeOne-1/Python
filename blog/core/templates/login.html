@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome</title>
+</head>
+<body>
+    <h1>Welcome!</h1>
+
+    {% if email %}
+        <p>You are logged in as <strong>{{ email }}</strong>.</p>
+    {% else %}
+        <p>Welcome to the site!</p>
+    {% endif %}
+
+</body>
+</html>
