@@ -12,5 +12,9 @@
         <p>Welcome to the site!</p>
     {% endif %}
 
+    <form action="{% url 'dashboard' %}" method="get">
+        <button type="submit">Go to Dashboard</button>
+    </form>
+
 </body>
 </html>

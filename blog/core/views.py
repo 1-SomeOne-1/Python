@@ -1,5 +1,8 @@
 from django.shortcuts import render, redirect
 from django import forms
+import random
+import string
+
 
 # Sign-up form
 class SignUpForm(forms.Form):
@@ -32,3 +35,19 @@ def home(request):
 
     return render(request, 'signup.html', {'form': form,})
 
+def generate_dummy_users(n):
+    users = []
+    for i in range(n):
+        username = f"user{i}"
+        email = f"user{i}@example.com"
+        password = ''.join(random.choices(string.ascii_letters + string.digits, k=10))
+        users.append({
+            'username': username,
+            'email': email,
+            'password': password
+        })
+    return users
+
+def dashboard(request):
+    users = generate_dummy_users(30)
+    return render(request, 'dashboard.html', {'users': users})
