@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django import forms
 import random
 import string
+from django.contrib.auth.models import User
 
 
 # Sign-up form
@@ -21,7 +22,7 @@ def home(request):
             password = form.cleaned_data['password']
 
             # Dummy authentication check
-            if email == 'test@example.com' and password == 'password123':
+            if email == 'admin@gmail.com' and password == '1234':
              request.session['email'] = email
              return redirect('login')
 
@@ -49,5 +50,5 @@ def generate_dummy_users(n):
     return users
 
 def dashboard(request):
-    users = generate_dummy_users(30)
+    users = User.objects.all()
     return render(request, 'dashboard.html', {'users': users})
