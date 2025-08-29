@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect,  get_object_or_404
 from django import forms
 import random
 import string
@@ -52,3 +52,14 @@ def generate_dummy_users(n):
 def dashboard(request):
     users = User.objects.all()
     return render(request, 'dashboard.html', {'users': users})
+
+
+from .models import Blog
+
+def latest_blogs(request):
+    blogs = Blog.objects.order_by('-created_at')
+    return render(request, 'latest_blogs.html', {'blogs': blogs})
+
+def blog_detail(request, pk):
+    blog = get_object_or_404(Blog, pk=pk)
+    return render(request, 'blog_detail.html', {'blog': blog})

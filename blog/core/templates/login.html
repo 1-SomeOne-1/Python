@@ -1,20 +1,83 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>Welcome</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #000; /* Black background */
+            color: #eee; /* Light text */
+            text-align: center;
+            padding: 50px;
+        }
+
+        .container {
+            background-color: #121212; /* Dark container */
+            border-radius: 10px;
+            padding: 40px;
+            max-width: 500px;
+            margin: auto;
+            box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+        }
+
+        h1 {
+            color: #fff;
+            margin-bottom: 30px;
+        }
+
+        p {
+            font-size: 18px;
+            margin: 20px 0;
+            color: #ccc;
+        }
+
+        strong {
+            color: #fff;
+        }
+
+        .button-group {
+            margin-top: 30px;
+        }
+
+        button {
+            background-color: #222; /* Dark button */
+            color: #eee;
+            border: 1px solid #555;
+            padding: 12px 24px;
+            margin: 10px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #444;
+            border-color: #888;
+            color: #fff;
+        }
+    </style>
 </head>
 <body>
-    <h1>Welcome!</h1>
+    <div class="container">
+        <h1>Welcome!</h1>
 
-    {% if email %}
-        <p>You are logged in as <strong>{{ email }}</strong>.</p>
-    {% else %}
-        <p>Welcome to the site!</p>
-    {% endif %}
+        {% if email %}
+            <p>You are logged in as <strong>{{ email }}</strong>.</p>
+        {% else %}
+            <p>Welcome to the site!</p>
+        {% endif %}
 
-    <form action="{% url 'dashboard' %}" method="get">
-        <button type="submit">Go to Dashboard</button>
-    </form>
+        <div class="button-group">
+            <form action="{% url 'dashboard' %}" method="get" style="display: inline;">
+                <button type="submit">Go to Dashboard</button>
+            </form>
 
+            <form action="{% url 'latest_blogs' %}" method="get" style="display: inline;">
+                <button type="submit">View Latest Blogs</button>
+            </form>
+        </div>
+    </div>
 </body>
 </html>
