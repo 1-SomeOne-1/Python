@@ -3,7 +3,7 @@ from django import forms
 import random
 import string
 from django.contrib.auth.models import User
-
+from django.views import View
 
 # Sign-up form
 class SignUpForm(forms.Form):
@@ -63,3 +63,6 @@ def latest_blogs(request):
 def blog_detail(request, pk):
     blog = get_object_or_404(Blog, pk=pk)
     return render(request, 'blog_detail.html', {'blog': blog})
+
+def create_blog(request):
+    return render( request, 'create_blog.html',)
