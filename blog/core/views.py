@@ -64,10 +64,13 @@ def blog_detail(request, pk):
     blog = get_object_or_404(Blog, pk=pk)
     return render(request, 'blog_detail.html', {'blog': blog})
 
-def create_blog(request):
+def create_blog(request,self):
     title = request.POST.get('title')
     description = request.POST.get('description')
     image = request.FILES.get('image')
-    print(title)
+    Blog.objects.create(title = title, description = description, image = image )
+
     return render( request, 'create_blog.html',)
+
+
 
