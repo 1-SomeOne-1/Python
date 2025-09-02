@@ -65,4 +65,9 @@ def blog_detail(request, pk):
     return render(request, 'blog_detail.html', {'blog': blog})
 
 def create_blog(request):
+    title = request.POST.get('title')
+    description = request.POST.get('description')
+    image = request.FILES.get('image')
+    print(title)
     return render( request, 'create_blog.html',)
+
